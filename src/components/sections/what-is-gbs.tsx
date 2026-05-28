@@ -92,7 +92,7 @@ export function WhatIsGBS() {
             <p className="text-muted-foreground mb-8 text-sm md:text-base leading-relaxed">
               ১৯১৬ সালের ১৩ অক্টোবর সমের যুদ্ধের প্রাক্কালে ফরাসি চিকিৎসকরা আবিষ্কার করেছিলেন এই বিশেষ ঊর্ধ্বমুখী পক্ষাঘাতের আসল কারণ। তরল পদার্থের প্রোটিন বিশ্লেষণের মাধ্যমে এটি সাধারণ মেরুদণ্ডের আঘাত থেকে আলাদা করা সম্ভব হয়।
             </p>
-            <div className="relative border-l-2 border-primary/20 pl-6 space-y-8">
+            <div className="relative border-l-2 border-primary/20 ml-4 sm:ml-6 pl-6 space-y-8">
               {HISTORICAL_MILESTONES.map((milestone, idx) => (
                 <div key={idx} className="relative group">
                   {/* Timeline dot */}
@@ -129,9 +129,11 @@ export function WhatIsGBS() {
             </div>
 
             <h4 className="text-sm font-bold text-foreground mb-3 uppercase tracking-wider">
-              সাধারণ ট্র্রিগারকারী জীবাণুসমূহ:
+              সাধারণ ট্রিগারকারী জীবাণুসমূহ:
             </h4>
-            <div className="overflow-x-auto rounded-xl border border-primary/10">
+            
+            {/* Table layout for larger screens */}
+            <div className="hidden sm:block overflow-x-auto rounded-xl border border-primary/10">
               <Table className="w-full min-w-[500px]">
                 <TableHeader className="bg-primary/5">
                   <TableRow>
@@ -150,6 +152,22 @@ export function WhatIsGBS() {
                   ))}
                 </TableBody>
               </Table>
+            </div>
+
+            {/* Premium Card-based list for mobile screens */}
+            <div className="sm:hidden space-y-3">
+              {PATHOGENS.map((p, idx) => (
+                <div key={idx} className="p-4 rounded-2xl border border-primary/10 bg-primary/[0.02] dark:bg-slate-900/10 space-y-2">
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="font-bold text-sm text-foreground tracking-tight">{p.name}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-bold shrink-0">{p.link}</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground flex items-center gap-1.5 pt-1.5 border-t border-border/50">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span className="font-medium">{p.disease}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </FadeIn>
         </div>
